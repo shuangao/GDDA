@@ -1,0 +1,69 @@
+\subsection{Multi-distill}
+Suppose we have $L$ examples from and $N$ classes. There are $M-1$ the source (teacher) models providing the soft labels for each of the $L$ examples.
+label matrix: $S = R^{L\times M \times N}$. 
+For the $n$th binary SVM 
+\begin{equation}
+\begin{aligned}
+\min \qquad & \frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_j{e_{ijn}^2} \\
+s.t.\qquad& e_{ijn} = s_{ijn} - w_nx_i\\
+& \sum_j\lambda_j=1\\
+& \lambda \in [0,1]; i\in L;  j\in M\\
+\end{aligned}  
+\end{equation}
+Lagrangian:
+\begin{equation}
+\mathcal{L}=\frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_j{e_{ijn}^2}+\sum_{i,j}\alpha^{(n)}_{ij}\left(s_{ij} - wx_i-e_{ij}\right)+\beta^{(n)}\left(\sum_j\lambda_j-1\right)
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\frac{{\partial L}}{{\partial w_n}}& = w_n - \sum_{i}\alpha^{(n)}_{ij} {x_i}=0 \rightarrow w_n = \sum_{i}\alpha^{(n)}_{ij} {x_i}\\
+\frac{{\partial L}}{{\partial {e_{ijn}}}} & = 2C\lambda_j {e_{ijn}} - {\alpha^{(n)} _{ij}}=0 \rightarrow \alpha^{(n)}_{ij} = 2C\lambda_j {e_{ijn}}\\
+\end{aligned}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+x_i\sum_{k}\alpha^{(n)}_{kj}x_k+\frac{\alpha^{(n)}_{ij}}{2C\lambda_j}&=s_{ijn}\\
+\lambda_jx_i\sum_{k}\alpha^{(n)}_{kj}x_k+\frac{\alpha^{(n)}_{ij}}{2C}&=\lambda_js_{ijn}\\
+x_i\sum_{k}\alpha^{(n)}_{kj}x_k+\sum_j\frac{\alpha^{(n)}_{ij}}{2C}&=\sum_j\lambda_js_{ijn}
+\end{aligned}
+\end{equation}
+Let $\eta_{in}=\sum_j\alpha^{(n)}_{ij}$, we have:
+\begin{equation}
+\begin{aligned}
+\sum_j\eta_{jn}x_jx_i+\frac{\eta_{in}}{2C}&=\sum_j\lambda_js_{ijn}\\
+M\eta_n&=S_n\begin{bmatrix}
+\lambda_1\\\vdots\\\lambda_m
+\end{bmatrix}
+\end{aligned}
+\end{equation}
+Let ${\eta}'_{n}=M^{-1}S_n \in R^{L\times M}$
+\[\eta_{in}=\sum_j\lambda_j{\eta}'_{ijn}\]
+
+According to LOO and the tricks above:
+\[\sum_j\lambda_js_{ijn}-\hat{Y}_{in} = \frac{\sum_j\lambda_j{\eta}'_{ijn}}{M_{ii}^{-1}}\]
+\[\hat{Y}_{in} = \sum_j\lambda_j\left(s_{ijn}-\frac{{\eta}'_{ijn}}{M_{ii}^{-1}}\right)\]
+\subsubsection{softmax}
+Let:
+\[\mu_{ijn}=s_{ijn}-\frac{{\eta}'_{ijn}}{M_{ii}^{-1}}\]
+\begin{equation}
+\begin{aligned}
+P_{in} &= \frac{e^{\hat{Y}_{in}}}{\sum_{h} e^{\hat{Y}_{ih}}}\\
+\frac{\partial L_c^{(i)}}{\partial \hat{Y}_{in}}&=\left(P_{in}-{Y}_{in}\right)
+\end{aligned}
+\end{equation}
+\[\frac{\partial L_c^{(i)}}{\partial \lambda_j}=\sum_{n}\mu_{ijn}\left(P_{in}-Y_{in}\right)\]
+\[\frac{\partial L_c^{(i)}}{\partial \lambda_j}=\sum_{i,n}\mu_{ijn}\left(P_{in}-Y_{in}\right)\]
+\subsubsection{Hinge}
+\begin{equation}
+L_{h}\left( {\lambda ,i} \right) = \mathop {\max }\limits_r {\left[ {1 - {\varepsilon _{r,{y_i}}} + {{\hat Y}_{ir}}\left( {\lambda } \right) - {{\hat Y}_{i{y_i}}}\left( {\lambda } \right)} \right]}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\frac{\partial L_h^{(i)}}{\partial \lambda_j}&= 
+\begin{cases}
+0 & L_h^{(i)}=0\\
+\mu_{ijr}-\mu_{ijy_i}& \text{otherwise}
+\end{cases}\\
+\end{aligned}
+\end{equation}

@@ -1,0 +1,42 @@
+\subsection{Single Source for Office datasets}
+There are 3 subsets in offices datasets, webcam (795), amazon (2817) and dslr (498), sharing 31 classes. We perform 2 adaptation experiments, transferring from webcam to amazon and from dslr to amazon. 
+
+We use the features extracted from Alexnet \cite{KrizhevskyNIPS12} FC7 as the input features for both source and target domain. The teacher (source) model is trained with MLP on the whole source dataset and student (target) model is trained with GDDA-SVM. We also use brute force to search the imitation parameter $\lambda$ in range $[0,0.1,...,1]$ and show the results. Here our experiments run in a semi-supervised scenario where there are some unlabeled data in the target training set in each experiment. We also show the performance of the teacher model on the target task, denoted as "teacher". To avoid the randomness, we perform each experiments 10 times and report the results.
+\newpage
+\subsubsection{From DSLR to Amazon}
+\begin{figure}[h]
+\centering
+\begin{tabular}{cc}
+\subfloat[5 unlabeled ]{\includegraphics[width=0.45\textwidth]{figure/dslr1.png}}&
+\subfloat[10 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/dslr2.png}}\\
+\subfloat[15 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/dslr3.png}}&
+\subfloat[20 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/dslr4.png}}\\
+\end{tabular}
+\caption{DSLR $\rightarrow$ Amazon. Semi-supervised adaptation with one labeled instance per class.}
+\end{figure}
+\newpage
+\subsubsection{From Webcam to Amazon}
+\begin{figure}[h]
+\centering
+\begin{tabular}{cc}
+\subfloat[5 unlabeled ]{\includegraphics[width=0.45\textwidth]{figure/webcam1.png}}&
+\subfloat[10 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/webcam2.png}}\\
+\subfloat[15 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/webcam3.png}}&
+\subfloat[20 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/webcam4.png}}\\
+\end{tabular}
+\caption{Webcam $\rightarrow$ Amazon. Semi-supervised adaptation with one labeled instance per class.}
+\end{figure}
+\subsection{Multi-Source for Office datasets}
+We transfer DSLR and Webcam to Amazon datasets with different settings:
+\begin{figure}[h]
+\centering
+\begin{tabular}{cc}
+\subfloat[5 unlabeled ]{\includegraphics[width=0.45\textwidth]{figure/labeled1 unlabeled5.png}}&
+\subfloat[10 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/labeled1 unlabeled10.png}}\\
+\subfloat[15 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/labeled1 unlabeled15.png}}&
+\subfloat[20 unlabeled]{\includegraphics[width=0.45\textwidth]{figure/labeled1 unlabeled20.png}}\\
+\end{tabular}
+\caption{Webcam $\rightarrow$ Amazon. Semi-supervised adaptation with one labeled instance per class.}
+\end{figure}
+
+

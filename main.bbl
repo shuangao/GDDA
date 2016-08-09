@@ -1,0 +1,54 @@
+\begin{thebibliography}{1}
+
+\bibitem{ba2014deep}
+J.~Ba and R.~Caruana.
+\newblock Do deep nets really need to be deep?
+\newblock In {\em Advances in neural information processing systems}, pages
+  2654--2662, 2014.
+
+\bibitem{cawley2006leave}
+G.~C. Cawley.
+\newblock Leave-one-out cross-validation based model selection criteria for
+  weighted ls-svms.
+\newblock In {\em Neural Networks, 2006. IJCNN'06. International Joint
+  Conference on}, pages 1661--1668. IEEE, 2006.
+
+\bibitem{hinton2015distilling}
+G.~Hinton, O.~Vinyals, and J.~Dean.
+\newblock Distilling the knowledge in a neural network.
+\newblock {\em arXiv preprint arXiv:1503.02531}, 2015.
+
+\bibitem{KrizhevskyNIPS12}
+A.~Krizhevsky, I.~Sutskever, and G.~E. Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In {\em NIPS}, pages 1106--1114, 2012.
+
+\bibitem{lopez2015unifying}
+D.~Lopez-Paz, L.~Bottou, B.~Sch{\"o}lkopf, and V.~Vapnik.
+\newblock Unifying distillation and privileged information.
+\newblock {\em arXiv preprint arXiv:1511.03643}, 2015.
+
+\bibitem{luo2016face}
+P.~Luo, Z.~Zhu, Z.~Liu, X.~Wang, and X.~Tang.
+\newblock Face model compression by distilling knowledge from neurons.
+\newblock In {\em Thirtieth AAAI Conference on Artificial Intelligence}, 2016.
+
+\bibitem{romero2014fitnets}
+A.~Romero, N.~Ballas, S.~E. Kahou, A.~Chassang, C.~Gatta, and Y.~Bengio.
+\newblock Fitnets: Hints for thin deep nets.
+\newblock {\em arXiv preprint arXiv:1412.6550}, 2014.
+
+\bibitem{urban2016deep}
+G.~Urban, K.~J. Geras, S.~E. Kahou, O.~Aslan, S.~Wang, R.~Caruana, A.~Mohamed,
+  M.~Philipose, and M.~Richardson.
+\newblock Do deep convolutional nets really need to be deep (or even
+  convolutional)?
+\newblock {\em arXiv preprint arXiv:1603.05691}, 2016.
+
+\bibitem{vapnik2015learning}
+V.~Vapnik and R.~Izmailov.
+\newblock Learning using privileged information: Similarity control and
+  knowledge transfer.
+\newblock {\em Journal of Machine Learning Research}, 16:2023--2049, 2015.
+
+\end{thebibliography}

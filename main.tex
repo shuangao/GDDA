@@ -1,0 +1,105 @@
+\documentclass[11pt,onecolumn]{article}
+\usepackage{latexsym}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{geometry}
+\usepackage{subfig}
+\geometry{left=2.0cm,right=2.0cm, top=2.0cm, bottom=2.0cm}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{url}
+\usepackage{leftidx}
+\usepackage{graphicx,grffile}
+\usepackage{epstopdf}
+\usepackage{multirow,bigstrut}
+\usepackage{booktabs}
+\usepackage{subfig}
+\usepackage{soul,color}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\algorithmicbreak}{\textbf{break}}
+%\usepackage{subcaption}
+\usepackage{caption}
+\newcommand\figref[1]{Figure \ref{#1}}
+\linespread{1}
+\author{shuang ao\\
+}
+\title{
+\large\textbf{Distilling}
+}
+\frenchspacing
+\begin{document}
+\maketitle
+\section{Background}
+\textit{Distillation for domain adaptation} \cite{hinton2015distilling} and \textit{privileged information} \cite{vapnik2015learning} are two techniques that enable machines to learn from other machines. Both methods address the problem how to build a student model that can learn from the advanced teacher models. Recently, Lopez \textit{et al.} \cite{lopez2015unifying} proposed a framework called \textit{generalized distillation} that unifies both techniques and show that it can be applied in many scenarios.
+\subsection{Privileged information}
+In the original work of the privileged information \cite{vapnik2015learning}, the data can be represented as a collection of the triples:
+\[\{\left(x_1,x_1^*,y_1\right),\left(x_2,x_2^*,y_2\right) \dots \left(x_n,x_n^*,y_n\right)\}\]
+where each $(x_i,y_i)$ is a feature-label pair, and the novel element $x_i$ is additional information about the example $(x_i,y_i)$ provided by an intelligent teacher, such as to support the learning process. However, in the testing procedure, the learning machine is not able to obtain the privileged information from the teacher. Vapnik?s learning using privileged information is one example of what we call machines-teaching machines: the paradigm where machines learn from other machines, in addition to training data. 
+\subsection{Distillation}
+Distillation uses a simple (student) machine learns a complex task by imitating the solution of a flexible (teacher) machine. For a $c$-class scenario, distillation works as follow: consider the data
+\[\{x_i,y_i\}_{i=1}^n, \qquad x\in R^d, y\in \Delta^c\]
+where $\Delta^c$ is a $c$-dimensional probability vector. In traditional learning, we try to learn a function $f_t$ that:
+\begin{equation}\label{eq:normal}
+f_t=\underset{f_t \in \mathcal{F}_t}{\arg \min}\frac{1}{n}\sum_{i=1}^{n}\ell\left(y_i,\sigma(f_t(x_i))\right)+\Omega(||f_t||)
+\end{equation}
+here $\sigma$ is the softmax operation:
+\[\sigma(z)_k=\frac{e^{z_k}}{\sum_{j=1}^{c}e^{z_j}}\]
+and $\ell$ is the cross-entropy loss function:
+\[\ell(y,\hat{y})=-\sum_{i=1}^{c}y_i\log\hat{y}_i\]
+In distillation, we try to learn the student machine $f_s$ to imitate the teacher machine $f_t$. During the learning process, $f_s$ can receive the soft label $s_i$ from the teacher machine $f_t$ for each training example $x_i$.
+\begin{equation}\label{eq:softmax_T}
+s_i=\sigma(f_t(x_i)/T)
+\end{equation}
+where $T$ is the temperature for distillation. It is worthy to note that in distillation, $f_t$ can either be a single large complex neural network or an ensemble of some complex classifiers. We can see that the soft label $s_i$, which reveals the class dependency, is more informative than the class label $y_i$.
+
+The student machine can be learned by:
+\begin{equation}\label{eq:distill}
+f_s=\underset{f_s \in \mathcal{F}_s}{\arg \min}\frac{1}{n}\sum_{i=1}^{n}\left[\lambda\ell\left(y_i,\sigma(f_s(x_i))\right)+(1-\lambda)\ell\left(s_i,\sigma(f_s(x_i))\right)\right]
+\end{equation}
+here, $\mathcal{F}_s$ is a simpler function class than $\mathcal{F}_t$ and $\lambda$ is the imitation parameter to balance the importance between the hard label $y_i$ and the soft label $s_i$. The temperature $T>0$ controls how do we want to smooth the probability from the teacher $f_t$. Higher temperature leads to softer label.
+
+\subsection{Generalized distillation}
+Generalized distillation (GD) tries to unify the two frameworks together while using the soft label as the privileged information. The process of generalized distillation is as follows:
+
+\begin{enumerate}
+\item Learn teacher ${f}_t$ using the input-output pairs $\{x^*_i,y_i\}_{i=1}^n$ and Eq. \ref{eq:normal}.
+\item Compute teacher soft labels $s_i$, using the temperature parameter $T > 0$.
+\item Learn the student ${f}_s$ using the pair $\{\left(x_i,y_i\right),\left(x_i,s_i\right)\}_{i=1}^n$ and imitation parameter $\lambda$.
+\end{enumerate}
+
+\section{Domain adaptation with distilling SVMs}
+
+GD can be used in many scenario such as multi-task learning, semi-supervised learning and reinforcement learning. As generalized distillation only required for the training inputs $\{x_i,y_i\}_{i=1}^n$, a teacher function $f_t$, it is obvious that it can be used for domain adaptation, called \textit{Generalized Distillation Domain Adaptation} (\textbf{GDDA}), where the a source model can be used as the teacher to output the soft labels and the student model can be used as the target model. 
+
+There are several advantages for applying generalized distillation for domain adaptation:
+\begin{enumerate}
+\item Compatible with \textbf{various of scenarios}. GD only requires the outputs of the teacher model instead of asking for the specific parameters of the teacher model. Therefore, we can treat the teacher model, either a single model (single source) or an ensemble of models (multi-source), as a black-box. This means GDDA can be compatible with almost any types of source model.
+\item Effective in \textbf{small data regimes}. The theoretical analysis shows that the teacher is most helpful when working with small datasets, or in the initial stages of online learning. In domain adaptation, we also requires to learn a effective classifier with less training data.
+\item Compatible with \textbf{unlabeled data}. GD can be used in a semi-supervised scenario. Similarly, GDDA can work with unlabeled data to get improved performance.
+\item effective in practice. According to GD, the student model can be a much simple function than the teacher model. Thus, it can be learned and deployed effectively in practice.
+\end{enumerate}
+
+In GD, we have to decide the value of 2 parameters, the temperature $T$ and imitation parameter $\lambda$. the temperature $T$ control the smoothness of the soft label and the imitation parameter $\lambda$ balance the losses from soft and hard labels. It is clear that the imitation parameter $\lambda$ is more important for the performance of the student model. In the GD, this parameter is determined by brute force search which greatly reduces the effectiveness of the GDDA for a multi-source scenario (multiple $\lambda$ to be determined).
+
+To solve this problem, we propose a novel method that can determined the imitation parameter $\lambda$ autonomously, called GDDA-SVM. In our GDDA-SVM, instead of using cross-entropy loss, we use Mean Squared Error (MSE) as our loss function for the following two reasons: (1) Some recently work \cite{ba2014deep} \cite{luo2016face} \cite{romero2014fitnets} \cite{urban2016deep} show that MSE is also an efficient measurement for a student model to mimic the behavior of the teacher model. (2) MSE can provide a closed form cross-validation error estimation of the model for model selection. 
+
+%\subsection{GDDA-SVM} 
+%\input{GDDA}
+\input{multi-distill.tex}
+
+\section{Experiments}
+\input{exp}
+
+\section{Future works}
+From current experiments we can see that GDDA can be a good framework for domain adaptation in single source scenario. We show that GDDA-SVM can fully exploit the knowledge from the source model. There are still a lot of work to be done within the GDDA-SVM framework:
+\begin{enumerate}
+\item If there are multiple sources and multiple imitation parameters, can GDDA-SVM provide accurate estimation?
+\item Can we aggregate GDDA-SVM framework into the deep neural network to train a deep GDDA network? Currently, GDDAA-SVM tries to estimate the imitation parameter by solving a convex problem. How to effectively estimate the imitation parameter when it is integrated into a GDDA network. 
+\end{enumerate}
+\bibliographystyle{abbrv}
+\bibliography{research}
+\end{document}
