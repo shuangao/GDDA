@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.10.17)  9 AUG 2016 10:02
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.10.17)  9 AUG 2016 10:11
 entering extended mode
 **main.tex
-(D:\LaTex_Files\distrill\main.tex
+(D:\LaTex_Files\GDDA\main.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -354,8 +354,7 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
-)
-(D:\LaTex_Files\distrill\main.aux)
+) (D:\LaTex_Files\GDDA\main.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
@@ -430,9 +429,9 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 35.
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (D:\LaTex_Files\distr
-ill\multi-distill.tex [3])
-(D:\LaTex_Files\distrill\exp.tex [4]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (D:\LaTex_Files\GDDA\
+multi-distill.tex [3])
+(D:\LaTex_Files\GDDA\exp.tex [4]
 <figure/dslr1.png, id=26, 1300.86pt x 794.97pt>
 File: figure/dslr1.png Graphic file (type png)
  <use figure/dslr1.png>
@@ -456,30 +455,30 @@ File: figure/dslr4.png Graphic file (type png)
  <use figure/dslr4.png>
 Package pdftex.def Info: figure/dslr4.png used on input line 13.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
- [5 <D:/LaTex_Files/distrill/figure/dslr1.png> <D:/LaTex_Files/distrill/figure/
-dslr2.png> <D:/LaTex_Files/distrill/figure/dslr3.png> <D:/LaTex_Files/distrill/
-figure/dslr4.png>] <figure/webcam1.png, id=39, 1300.86pt x 794.97pt>
+ [5 <D:/LaTex_Files/GDDA/figure/dslr1.png> <D:/LaTex_Files/GDDA/figure/dslr2.pn
+g> <D:/LaTex_Files/GDDA/figure/dslr3.png> <D:/LaTex_Files/GDDA/figure/dslr4.png
+>]
+<figure/webcam1.png, id=39, 1300.86pt x 794.97pt>
 File: figure/webcam1.png Graphic file (type png)
-
-<use figure/webcam1.png>
+ <use figure/webcam1.png>
 Package pdftex.def Info: figure/webcam1.png used on input line 22.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
- <figure/webcam2.png, id=40, 1300.86pt x 794.97pt>
-File: figure/webcam2.png Graphic file (type png)
 
-<use figure/webcam2.png>
+<figure/webcam2.png, id=40, 1300.86pt x 794.97pt>
+File: figure/webcam2.png Graphic file (type png)
+ <use figure/webcam2.png>
 Package pdftex.def Info: figure/webcam2.png used on input line 23.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
- <figure/webcam3.png, id=41, 1300.86pt x 794.97pt>
-File: figure/webcam3.png Graphic file (type png)
 
-<use figure/webcam3.png>
+<figure/webcam3.png, id=41, 1300.86pt x 794.97pt>
+File: figure/webcam3.png Graphic file (type png)
+ <use figure/webcam3.png>
 Package pdftex.def Info: figure/webcam3.png used on input line 24.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
- <figure/webcam4.png, id=42, 1300.86pt x 794.97pt>
-File: figure/webcam4.png Graphic file (type png)
 
-<use figure/webcam4.png>
+<figure/webcam4.png, id=42, 1300.86pt x 794.97pt>
+File: figure/webcam4.png Graphic file (type png)
+ <use figure/webcam4.png>
 Package pdftex.def Info: figure/webcam4.png used on input line 25.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
@@ -517,34 +516,33 @@ Package pdftex.def Info: figure/labeled1 unlabeled20.png used on input line 37.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (D:\LaTex_Files\distrill\main.bbl [6 <D:/LaTex_Files/distrill/figure/webcam1.
-png> <D:/LaTex_Files/distrill/figure/webcam2.png> <D:/LaTex_Files/distrill/figu
-re/webcam3.png> <D:/LaTex_Files/distrill/figure/webcam4.png>] [7 <D:/LaTex_File
-s/distrill/figure/labeled1 unlabeled5.png> <D:/LaTex_Files/distrill/figure/labe
-led1 unlabeled10.png> <D:/LaTex_Files/distrill/figure/labeled1 unlabeled15.png>
- <D:/LaTex_Files/distrill/figure/labeled1 unlabeled20.png>]) [8]
-(D:\LaTex_Files\distrill\main.aux) ) 
+) (D:\LaTex_Files\GDDA\main.bbl [6 <D:/LaTex_Files/GDDA/figure/webcam1.png> <D:
+/LaTex_Files/GDDA/figure/webcam2.png> <D:/LaTex_Files/GDDA/figure/webcam3.png> 
+<D:/LaTex_Files/GDDA/figure/webcam4.png>]) [7 <D:/LaTex_Files/GDDA/figure/label
+ed1 unlabeled5.png> <D:/LaTex_Files/GDDA/figure/labeled1 unlabeled10.png> <D:/L
+aTex_Files/GDDA/figure/labeled1 unlabeled15.png> <D:/LaTex_Files/GDDA/figure/la
+beled1 unlabeled20.png>] (D:\LaTex_Files\GDDA\main.aux) ) 
 Here is how much of TeX's memory you used:
- 5132 strings out of 493921
- 74760 string characters out of 3152883
+ 5131 strings out of 493921
+ 74691 string characters out of 3152883
  147286 words of memory out of 3000000
- 8317 multiletter control sequences out of 15000+200000
+ 8316 multiletter control sequences out of 15000+200000
  11091 words of font info for 42 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  44i,17n,47p,728b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
-<D:/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmbx10.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmmi10.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.
-pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr10.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-<D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (8 pages, 1453969 bytes).
+<D:/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmbx10.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmbx12.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmmi6.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pf
+b><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr12.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr8.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><D:/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy8.pfb><D:/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (7 pages, 1452494 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
+ 103 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
