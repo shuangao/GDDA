@@ -16,6 +16,7 @@
 \usepackage{epstopdf}
 \usepackage{multirow,bigstrut}
 \usepackage{booktabs}
+\usepackage{amsmath}
 \usepackage{subfig}
 \usepackage{soul,color}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -73,19 +74,29 @@ Generalized distillation (GD) tries to unify the two frameworks together while u
 
 \section{Domain adaptation with distilling SVMs}
 
-GD can be used in many scenario such as multi-task learning, semi-supervised learning and reinforcement learning. As generalized distillation only required for the training inputs $\{x_i,y_i\}_{i=1}^n$, a teacher function $f_t$, it is obvious that it can be used for domain adaptation, called \textit{Generalized Distillation Domain Adaptation} (\textbf{GDDA}), where the a source model can be used as the teacher to output the soft labels and the student model can be used as the target model. 
+GD can be used in many scenario such as multi-task learning, semi-supervised learning and reinforcement learning. As generalized distillation only required for the training inputs $\{x_i,y_i\}_{i=1}^n$ and the output $s$ from the teacher function $f_t$, it can be naturally applied in domain adaptation, called \textit{Generalized Distillation Domain Adaptation} (\textbf{GDDA}), where the the source model can be used as the teacher to output the soft labels and the student model is the target model. 
+
+Similar to GD, the process of GDDA is as follow:
+\begin{enumerate}
+	\item For a $N$-class classification problem, suppose we have the training data $\{x_i,y_i\}_{i=1}^L$ and $M-1$ source (teacher) models $\{f^*_j\}_{j=1}^{M-1}$.
+	\item For each of the training example $x_i$ and each source model $f^*_j$, computer the corresponding $N$-dimensional soft label $y^*_{ij}$ with some temperature $T>0$.
+	\item Learn the target model $f_t$ using the $(M+1)$-tuple $\{x_i,y_i,y^*_{i1},\dots,y^*_{M-1}\}_{i=1}^L$ with some imitation parameters $\{\lambda_i\}^M_{i=1}$
+\end{enumerate} 
 
 There are several advantages for applying generalized distillation for domain adaptation:
 \begin{enumerate}
-\item Compatible with \textbf{various of scenarios}. GD only requires the outputs of the teacher model instead of asking for the specific parameters of the teacher model. Therefore, we can treat the teacher model, either a single model (single source) or an ensemble of models (multi-source), as a black-box. This means GDDA can be compatible with almost any types of source model.
-\item Effective in \textbf{small data regimes}. The theoretical analysis shows that the teacher is most helpful when working with small datasets, or in the initial stages of online learning. In domain adaptation, we also requires to learn a effective classifier with less training data.
-\item Compatible with \textbf{unlabeled data}. GD can be used in a semi-supervised scenario. Similarly, GDDA can work with unlabeled data to get improved performance.
-\item effective in practice. According to GD, the student model can be a much simple function than the teacher model. Thus, it can be learned and deployed effectively in practice.
+\item Compatible with \textbf{various of classifiers}. GD only requires the outputs of the teacher model instead of asking for the specific parameters of the teacher model. Therefore, we can treat the teacher model, either a single model (single source) or an ensemble of models (multi-source), as a black-box. This means GDDA is compatible with almost any types of source model.
+\item Highly effective in \textbf{small data regimes}. The theoretical analysis shows that the teacher is most helpful when working with small datasets, or in the initial stages of online learning. In domain adaptation, we also requires to learn an effective target classifier with just a few training examples.
+\item Compatible with \textbf{different scenarios}. GD can be used in a semi-supervised scenario. Similarly, GDDA can work in many different transfer learning scenarios besides a supervised setting. For example, in a unsupervised transfer learning scenario, we can set the imitation parameter of the hard label to 0 and learn the target model. In the semi-supervised scenario, we can choose a small value for the imitation parameter of the hard label as it could be less informative than the soft labels. 
+%a semi-supervised scenario and utilize the soft label of the unlabeled data to further improve performance of the target model. 
+\item \textbf{Better generalization performance}. According to GD, the student model can be a much simple function than the teacher model. This implies that the VC dimension of the student model is smaller than the teacher(s). According to the principle of Empirical Risk Minimization (EMR) \cite{vapnik1999overview}, in GDDA, as long as the student (target) model achieves the same training error of the teacher (source) model(s), it should have better generalization ability. This means the knowledge of the source model(s) can be effective transferred to the target task.
 \end{enumerate}
 
-In GD, we have to decide the value of 2 parameters, the temperature $T$ and imitation parameter $\lambda$. the temperature $T$ control the smoothness of the soft label and the imitation parameter $\lambda$ balance the losses from soft and hard labels. It is clear that the imitation parameter $\lambda$ is more important for the performance of the student model. In the GD, this parameter is determined by brute force search which greatly reduces the effectiveness of the GDDA for a multi-source scenario (multiple $\lambda$ to be determined).
+In GDDA, we have to decide the values of 2 parameters, the temperature $T$ and imitation parameter $\lambda$. The temperature $T$ control the smoothness of the soft label and the imitation parameter $\lambda$ controls how similar the target model is to the source model. It is obvious that the value of imitation parameter can greatly affect the performance of the target model and choosing a proper imitation parameter can greatly improve the transfer efficiency. In the previous work of GD, the imitation parameter is determined by brute force search which greatly reduces its effectiveness. In domain adaptation, it is common that there could be multiple source models to be exploited and it is tedious to search the imitation parameter for each of the source model.
 
-To solve this problem, we propose a novel method that can determined the imitation parameter $\lambda$ autonomously, called GDDA-SVM. In our GDDA-SVM, instead of using cross-entropy loss, we use Mean Squared Error (MSE) as our loss function for the following two reasons: (1) Some recently work \cite{ba2014deep} \cite{luo2016face} \cite{romero2014fitnets} \cite{urban2016deep} show that MSE is also an efficient measurement for a student model to mimic the behavior of the teacher model. (2) MSE can provide a closed form cross-validation error estimation of the model for model selection. 
+To solve this problem, we propose a novel method that can determined the imitation parameter $\lambda$ autonomously, called GDDA-SVM. In our GDDA-SVM, instead of using cross-entropy loss, we use Mean Squared Error (MSE) as our loss function for the following two reasons: (1) Some recently work \cite{ba2014deep} \cite{luo2016face} \cite{romero2014fitnets} \cite{urban2016deep} show that MSE is also an efficient measurement for a student model to mimic the behavior of the teacher model. (2) MSE can provide a closed form cross-validation error estimation and help us to choose the proper imitation parameter effectively. 
+
+
 
 %\subsection{GDDA-SVM} 
 %\input{GDDA}

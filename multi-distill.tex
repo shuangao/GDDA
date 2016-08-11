@@ -1,69 +1,116 @@
-\subsection{Multi-distill}
-Suppose we have $L$ examples from and $N$ classes. There are $M-1$ the source (teacher) models providing the soft labels for each of the $L$ examples.
-label matrix: $S = R^{L\times M \times N}$. 
-For the $n$th binary SVM 
-\begin{equation}
+\subsection{Distillation with multiple sources}
+Suppose we have $L$ examples $\{x_i,y_i\}_{i=1}^L$ from and $N$ classes where $X\in R^{L\times d}, Y\in R^{L\times N}$. Meanwhile, there are $M-1$ the source (teacher) models providing the soft labels $\{Y^*_i\}_{i=1}^{M-1}$ for each of the $L$ examples. As 
+Combining the hard label $Y$ and soft label $Y^*$, we have our new label matrix: $S = R^{M\times L \times N}$. To solve this $N$-class classification problem, we adopt the One-vs-All strategy to build $N$ binary SVMs.
+To obtain the $n$th binary SVM, we have to solve the following optimization problem: 
+\begin{equation}\label{eq:multi-distill}
 \begin{aligned}
-\min \qquad & \frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_j{e_{ijn}^2} \\
-s.t.\qquad& e_{ijn} = s_{ijn} - w_nx_i\\
-& \sum_j\lambda_j=1\\
-& \lambda \in [0,1]; i\in L;  j\in M\\
+\min \qquad & \frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_i{e_{ijn}^2} \\
+s.t.\qquad& e_{ijn} = s_{ijn} - w_nx_j\\
+& \sum_i\lambda_i=1\\
+& \lambda \in [0,1]; i\in M;  j\in L\\
 \end{aligned}  
 \end{equation}
-Lagrangian:
+To solve this optimization problem, we use KKT theorem \cite{cristianini2000introduction} and add the dual sets of variables to the Lagrangian of the optimization problem:
 \begin{equation}
-\mathcal{L}=\frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_j{e_{ijn}^2}+\sum_{i,j}\alpha^{(n)}_{ij}\left(s_{ij} - wx_i-e_{ij}\right)+\beta^{(n)}\left(\sum_j\lambda_j-1\right)
+\mathcal{L}=\frac{1}{2}{\left| w_n \right|^2} + C\sum_{i,j} \lambda_i{e_{ijn}^2}+\sum_{i,j}\alpha^{(n)}_{ij}\left(s_{ij} - wx_j-e_{ij}\right)+\beta^{(n)}\left(\sum_i\lambda_i-1\right)
+\end{equation}
+To find the saddle point, 
+\begin{equation}
+\begin{aligned}
+\frac{{\partial L}}{{\partial w_n}}& = w_n - \sum_{j}\alpha^{(n)}_{ij} {x_j}=0 \rightarrow w_n = \sum_{j}\alpha^{(n)}_{ij} {x_j}\\
+\frac{{\partial L}}{{\partial {e_{ijn}}}} & = 2C\lambda_i {e_{ijn}} - {\alpha^{(n)} _{ij}}=0 \rightarrow \alpha^{(n)}_{ij} = 2C\lambda_i {e_{ijn}}\\
+\end{aligned}
+\end{equation}
+For each example $x_j$ and its constraint of label $s_{ijn}$, we have $e_{ijn}  + w_nx_j= s_{ijn}$. Replacing $w_n$ and $e_{ijn}$,  we have:  
+\begin{equation}
+\begin{aligned}
+%x_j\sum_{k}\alpha^{(n)}_{ik}x_k+\frac{\alpha^{(n)}_{ij}}{2C\lambda_i}&=s_{ijn}\\
+\lambda_ix_j\sum_{k}\alpha^{(n)}_{ik}x_k+\frac{\alpha^{(n)}_{ij}}{2C}&=\lambda_is_{ijn}
+%x_j\sum_{k}\alpha^{(n)}_{ik}x_k+\sum_j\frac{\alpha^{(n)}_{ij}}{2C}&=\sum_j\lambda_js_{ijn}
+\end{aligned}
+\end{equation}
+Summing over each constraint of example $x_j$, we have:
+\begin{equation}
+\underbrace{\sum_i\lambda_i}_{=1} x_j\sum_{k}\alpha^{(n)}_{ik}x_k+\sum_i\frac{\alpha^{(n)}_{ij}}{2C}=\sum_i\lambda_is_{ijn}
+\end{equation}
+%Here we use $K$ to denote the kernel matrix $K=\{x_ix_j|i,j\in 1\dots L\}$.
+Let %$M=[K+\frac{\mathbf{I}}{2C}]$ and 
+$\eta_{jn}=\sum_i\alpha^{(n)}_{ij}$, we have:
+\begin{equation}
+\begin{aligned}
+\sum_j\eta_{jn}x_jx_i+\frac{\eta_{in}}{2C}&=\sum_i\lambda_is_{ijn}\\
+%M\eta_n&=S_n\begin{bmatrix}
+%\lambda_1\\\vdots\\\lambda_m
+%\end{bmatrix}
+\end{aligned}
 \end{equation}
 
-\begin{equation}
-\begin{aligned}
-\frac{{\partial L}}{{\partial w_n}}& = w_n - \sum_{i}\alpha^{(n)}_{ij} {x_i}=0 \rightarrow w_n = \sum_{i}\alpha^{(n)}_{ij} {x_i}\\
-\frac{{\partial L}}{{\partial {e_{ijn}}}} & = 2C\lambda_j {e_{ijn}} - {\alpha^{(n)} _{ij}}=0 \rightarrow \alpha^{(n)}_{ij} = 2C\lambda_j {e_{ijn}}\\
-\end{aligned}
-\end{equation}
-\begin{equation}
-\begin{aligned}
-x_i\sum_{k}\alpha^{(n)}_{kj}x_k+\frac{\alpha^{(n)}_{ij}}{2C\lambda_j}&=s_{ijn}\\
-\lambda_jx_i\sum_{k}\alpha^{(n)}_{kj}x_k+\frac{\alpha^{(n)}_{ij}}{2C}&=\lambda_js_{ijn}\\
-x_i\sum_{k}\alpha^{(n)}_{kj}x_k+\sum_j\frac{\alpha^{(n)}_{ij}}{2C}&=\sum_j\lambda_js_{ijn}
-\end{aligned}
-\end{equation}
-Let $\eta_{in}=\sum_j\alpha^{(n)}_{ij}$, we have:
-\begin{equation}
-\begin{aligned}
-\sum_j\eta_{jn}x_jx_i+\frac{\eta_{in}}{2C}&=\sum_j\lambda_js_{ijn}\\
-M\eta_n&=S_n\begin{bmatrix}
-\lambda_1\\\vdots\\\lambda_m
-\end{bmatrix}
-\end{aligned}
-\end{equation}
-Let ${\eta}'_{n}=M^{-1}S_n \in R^{L\times M}$
-\[\eta_{in}=\sum_j\lambda_j{\eta}'_{ijn}\]
+This implies that solving the optimization problem \eqref{eq:multi-distill} is equivalent to solve a standard LS-SVM while the target is encoded as the sum of the weighted outputs of each source model as well as the hard label, i.e. $\sum_i\lambda_is_{ijn}$.
 
-According to LOO and the tricks above:
-\[\sum_j\lambda_js_{ijn}-\hat{Y}_{in} = \frac{\sum_j\lambda_j{\eta}'_{ijn}}{M_{ii}^{-1}}\]
-\[\hat{Y}_{in} = \sum_j\lambda_j\left(s_{ijn}-\frac{{\eta}'_{ijn}}{M_{ii}^{-1}}\right)\]
-\subsubsection{softmax}
+Here we use $\Omega$ to denote the matrix $\Omega=[K+\frac{\mathbf{I}}{2C}]$ where $K$ is the kernel matrix $K=\{x_ix_j|i,j\in 1\dots L\}$. To simplify our notation, let ${\eta}'_{n}=M^{-1}S_n$ where $S_n$ is the matrix $S_n=\{s_{ijn}|i\in M;j\in L\}$ and $\Omega^{-1}$ is the inverse of matrix $\Omega$. 
+\[\eta_{jn}=\sum_i\lambda_i{\eta}'_{ijn}\]
+
+The Leave-one-out estimation of the example $x_j$ for the $n$th binary SVM can be written as \cite{cawley2006leave}:
+\[\sum_i\lambda_is_{ijn}-\hat{y}_{jn} =\frac{{\eta}_{jn}}{\Omega_{jj}^{-1}} =\frac{\sum_i\lambda_i{\eta}'_{ijn}}{\Omega_{jj}^{-1}}\]
+\begin{equation}\label{eq:yhat}
+\hat{y}_{jn} = \sum_i\lambda_i\left(s_{ijn}-\frac{{\eta}'_{ijn}}{\Omega_{jj}^{-1}}\right)
+\end{equation}
+where $\Omega^{-1}_{jj}$ is the $j$th diagonal element of $\Omega^{-1}$. Now, we have found an efficient way to estimate the output of each binary student model for example $x_j$. In the following part, we will introduce how to find the optimal $\lambda_i$ for each of the source models. 
+\subsection{Cross-entropy loss for imitation parameter estimation}
+From the previous part, we have already found a effective way to estimate the output of the SVM. The optimal imitation parameters, can be found by solving the following optimization problem:
+\begin{equation}
+\begin{aligned}
+\min \quad& L_c\left(\lambda\right)=\frac{1}{2}\sum_i^M||\lambda_i||^2+\frac{1}{L}\sum_{j,n}\ell\left(y_{in},\hat{y}_{jn}\left(\lambda\right)\right)
+\end{aligned}
+\end{equation}
+Here we use the L2 regularization term to guarantee that the estimated $\lambda$ can perform well on the testing data. For the loss $\ell(\cdot)$, We choose the cross-entropy (CE) as the loss function.
+Compared to MSE, cross-entropy pay less attention to a single incorrect predicted example which reduced the affect of the outlier example in the training data. Moreover, cross-entropy works better with unlabeled data. Assume that we use one-hot strategy to encode the hard labels of the labeled examples while encoding the unlabeled examples with all 0s. When we use cross-entropy, no loss with generate from the side of the hard labels for the unlabeled examples. The target model only simulate the outputs from the source models. Therefore, 
 Let:
-\[\mu_{ijn}=s_{ijn}-\frac{{\eta}'_{ijn}}{M_{ii}^{-1}}\]
+\begin{equation}\label{eq:mu}
+\mu_{ijn}=s_{ijn}-\frac{{\eta}'_{ijn}}{\Omega_{jj}^{-1}}
+\end{equation}
 \begin{equation}
+P_{jn} = \frac{e^{\hat{y}_{jn}}}{\sum_{h} e^{\hat{y}_{jh}}}
+\end{equation}
+\begin{equation}\label{eq:p}
 \begin{aligned}
-P_{in} &= \frac{e^{\hat{Y}_{in}}}{\sum_{h} e^{\hat{Y}_{ih}}}\\
-\frac{\partial L_c^{(i)}}{\partial \hat{Y}_{in}}&=\left(P_{in}-{Y}_{in}\right)
+\frac{\partial \ell(\lambda)}{\partial \lambda_i}&=\sum_n\mu_{ijn}\left(P_{jn}-{y}_{jn}\right)
 \end{aligned}
 \end{equation}
-\[\frac{\partial L_c^{(i)}}{\partial \lambda_j}=\sum_{n}\mu_{ijn}\left(P_{in}-Y_{in}\right)\]
-\[\frac{\partial L_c^{(i)}}{\partial \lambda_j}=\sum_{i,n}\mu_{ijn}\left(P_{in}-Y_{in}\right)\]
-\subsubsection{Hinge}
-\begin{equation}
-L_{h}\left( {\lambda ,i} \right) = \mathop {\max }\limits_r {\left[ {1 - {\varepsilon _{r,{y_i}}} + {{\hat Y}_{ir}}\left( {\lambda } \right) - {{\hat Y}_{i{y_i}}}\left( {\lambda } \right)} \right]}
-\end{equation}
-\begin{equation}
-\begin{aligned}
-\frac{\partial L_h^{(i)}}{\partial \lambda_j}&= 
-\begin{cases}
-0 & L_h^{(i)}=0\\
-\mu_{ijr}-\mu_{ijy_i}& \text{otherwise}
-\end{cases}\\
-\end{aligned}
-\end{equation}
+
+\begin{algorithm}
+	\caption{GDDA-SVM}
+	\begin{algorithmic}
+		\Require Input examples $X=\{x_1,...,x_L\}$, number of classes $N$, size of sources $M$, 3D label matrix, $S=[Y_1,Y_2,...,Y_{M}]$ with size $L\times M \times N$, temperature $T$, optimization iteration $iter$
+		\Ensure Target model $f_t = Wx$
+		\State Compute $\Omega=[K+\frac{\mathbf{I}}{2C}]$
+		\State Compute imitation parameter $\lambda$ with Algorithm \ref{alg:lambda}
+		\State Compute new label $Y_{new}=\sum_i\lambda_iY_i$
+		\State Compute $\eta = \Omega^{-1}Y_{new}$
+		\State Compute $w_n = \sum_j \eta_{jn}x_j$
+	\end{algorithmic}	
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{$\lambda$ Optimization}\label{alg:lambda}
+\begin{algorithmic}
+	\Require Input examples $X$, number of classes $N$, size of sources $M$, 3D label matrix $S$, temperature $T$, optimization iteration $iter$, Kernel matrix $\Omega$
+    \Ensure Imitation parameter $\lambda$
+    \State Initialize $\lambda = \frac{1}{M}$, 
+    
+    \State Let $S_n$ be the label matrix of $S$ for class $n$
+    \For{Each label $S_n$} 
+    \State Compute $\eta'_n=\Omega^{-1}S_n$ 
+    \EndFor
+    \State Compute $\mu$ using \eqref{eq:mu}
+    \For {$it \in iter$ }
+	    \State Compute $\hat{y}_{jn}$ and $P_{jn}$ with \eqref{eq:yhat}  and \eqref{eq:p}
+	    \State $\Delta_{\lambda} \leftarrow 0$
+	    \For {each $x_j$ in $X$}
+		    \State $\Delta_{\lambda} = \Delta_{\lambda}+\sum_n\mu_{ijn}\left(P_{jn}-{y}_{jn}\right)$
+	    \EndFor
+	    \State $\Delta_{\lambda} =\Delta_{\lambda}/L$
+	    \State $\lambda = \lambda - \frac{1}{itr}(\Delta_{\lambda}+\lambda)$
+    \EndFor
+\end{algorithmic}	
+\end{algorithm}
