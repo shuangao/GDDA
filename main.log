@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.20)  10 AUG 2016 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9) (preloaded format=pdflatex 2015.10.20)  11 AUG 2016 14:54
 entering extended mode
 **main.tex
 (main.tex
@@ -421,118 +421,122 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 ) [1
 
 {C:/Users/aoshuang/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-(multi-distill.tex [3] [4]) (exp.tex [5] [6]
-<figure/dslr1.png, id=33, 1300.86pt x 794.97pt>
+(multi-distill.tex [3] [4]) (exp.tex [5]
+<figure/dslr1.png, id=30, 1300.86pt x 794.97pt>
 File: figure/dslr1.png Graphic file (type png)
  <use figure/dslr1.png>
-Package pdftex.def Info: figure/dslr1.png used on input line 10.
+Package pdftex.def Info: figure/dslr1.png used on input line 12.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/dslr2.png, id=35, 1300.86pt x 794.97pt>
+<figure/dslr2.png, id=32, 1300.86pt x 794.97pt>
 File: figure/dslr2.png Graphic file (type png)
  <use figure/dslr2.png>
-Package pdftex.def Info: figure/dslr2.png used on input line 11.
+Package pdftex.def Info: figure/dslr2.png used on input line 13.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/dslr3.png, id=36, 1300.86pt x 794.97pt>
+<figure/dslr3.png, id=33, 1300.86pt x 794.97pt>
 File: figure/dslr3.png Graphic file (type png)
  <use figure/dslr3.png>
-Package pdftex.def Info: figure/dslr3.png used on input line 12.
+Package pdftex.def Info: figure/dslr3.png used on input line 14.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/dslr4.png, id=37, 1300.86pt x 794.97pt>
+<figure/dslr4.png, id=34, 1300.86pt x 794.97pt>
 File: figure/dslr4.png Graphic file (type png)
  <use figure/dslr4.png>
-Package pdftex.def Info: figure/dslr4.png used on input line 13.
+Package pdftex.def Info: figure/dslr4.png used on input line 15.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
- [7 <./figure/dslr1.png> <./figure/dslr2.png> <./figure/dslr3.png> <./figure/ds
-lr4.png>] <figure/webcam1.png, id=47, 1300.86pt x 794.97pt>
+
+<figure/webcam1.png, id=35, 1300.86pt x 794.97pt>
 File: figure/webcam1.png Graphic file (type png)
  <use figure/webcam1.png>
-Package pdftex.def Info: figure/webcam1.png used on input line 22.
+Package pdftex.def Info: figure/webcam1.png used on input line 24.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/webcam2.png, id=48, 1300.86pt x 794.97pt>
+<figure/webcam2.png, id=36, 1300.86pt x 794.97pt>
 File: figure/webcam2.png Graphic file (type png)
  <use figure/webcam2.png>
-Package pdftex.def Info: figure/webcam2.png used on input line 23.
+Package pdftex.def Info: figure/webcam2.png used on input line 25.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/webcam3.png, id=49, 1300.86pt x 794.97pt>
+<figure/webcam3.png, id=37, 1300.86pt x 794.97pt>
 File: figure/webcam3.png Graphic file (type png)
  <use figure/webcam3.png>
-Package pdftex.def Info: figure/webcam3.png used on input line 24.
+Package pdftex.def Info: figure/webcam3.png used on input line 26.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/webcam4.png, id=50, 1300.86pt x 794.97pt>
+<figure/webcam4.png, id=38, 1300.86pt x 794.97pt>
 File: figure/webcam4.png Graphic file (type png)
  <use figure/webcam4.png>
-Package pdftex.def Info: figure/webcam4.png used on input line 25.
+Package pdftex.def Info: figure/webcam4.png used on input line 27.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/labeled1 unlabeled5.png, id=51, 1300.86pt x 794.97pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6 <./figure/dslr1.png> <./figure/dslr2.png> <./figure/dslr3.png> <./figure/dsl
+r4.png>] <figure/labeled1 unlabeled5.png, id=47, 1300.86pt x 794.97pt>
 File: figure/labeled1 unlabeled5.png Graphic file (type png)
 
 <use figure/labeled1 unlabeled5.png>
-Package pdftex.def Info: figure/labeled1 unlabeled5.png used on input line 34.
+Package pdftex.def Info: figure/labeled1 unlabeled5.png used on input line 40.
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/labeled1 unlabeled10.png, id=52, 1300.86pt x 794.97pt>
+<figure/labeled1 unlabeled10.png, id=48, 1300.86pt x 794.97pt>
 File: figure/labeled1 unlabeled10.png Graphic file (type png)
 
 <use figure/labeled1 unlabeled10.png>
-Package pdftex.def Info: figure/labeled1 unlabeled10.png used on input line 35.
+Package pdftex.def Info: figure/labeled1 unlabeled10.png used on input line 41.
 
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/labeled1 unlabeled15.png, id=53, 1300.86pt x 794.97pt>
+<figure/labeled1 unlabeled15.png, id=49, 1300.86pt x 794.97pt>
 File: figure/labeled1 unlabeled15.png Graphic file (type png)
 
 <use figure/labeled1 unlabeled15.png>
-Package pdftex.def Info: figure/labeled1 unlabeled15.png used on input line 36.
+Package pdftex.def Info: figure/labeled1 unlabeled15.png used on input line 42.
 
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
-<figure/labeled1 unlabeled20.png, id=54, 1300.86pt x 794.97pt>
+<figure/labeled1 unlabeled20.png, id=50, 1300.86pt x 794.97pt>
 File: figure/labeled1 unlabeled20.png Graphic file (type png)
 
 <use figure/labeled1 unlabeled20.png>
-Package pdftex.def Info: figure/labeled1 unlabeled20.png used on input line 37.
+Package pdftex.def Info: figure/labeled1 unlabeled20.png used on input line 43.
 
 (pdftex.def)             Requested size: 225.21626pt x 137.6298pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) (main.bbl [8 <./figure/webcam1.png> <./figure/webcam2.png> <./figure/webcam3.
-png> <./figure/webcam4.png>] [9 <./figure/labeled1 unlabeled5.png> <./figure/la
+) (main.bbl [7 <./figure/webcam1.png> <./figure/webcam2.png> <./figure/webcam3.
+png> <./figure/webcam4.png>] [8 <./figure/labeled1 unlabeled5.png> <./figure/la
 beled1 unlabeled10.png> <./figure/labeled1 unlabeled15.png> <./figure/labeled1 
-unlabeled20.png>]) [10] (main.aux) ) 
+unlabeled20.png>]) [9] (main.aux) ) 
 Here is how much of TeX's memory you used:
- 5175 strings out of 493673
- 77665 string characters out of 3141520
- 151684 words of memory out of 3000000
- 8413 multiletter control sequences out of 15000+200000
+ 5178 strings out of 493673
+ 77702 string characters out of 3141520
+ 153708 words of memory out of 3000000
+ 8416 multiletter control sequences out of 15000+200000
  11712 words of font info for 44 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 44i,17n,47p,781b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmbx8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9
-.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on main.pdf (10 pages, 1471376 bytes).
+ 44i,17n,47p,825b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmbx8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmex10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.
+pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (9 pages, 1471761 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
+ 113 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -108,7 +108,8 @@ To solve this problem, we propose a novel method that can determined the imitati
 \section{Future works}
 From current experiments we can see that GDDA can be a good framework for domain adaptation in single source scenario. We show that GDDA-SVM can fully exploit the knowledge from the source model. There are still a lot of work to be done within the GDDA-SVM framework:
 \begin{enumerate}
-\item If there are multiple sources and multiple imitation parameters, can GDDA-SVM provide accurate estimation?
+\item Add experiments on heterogeneous data.(Ask the advice from Wei Yin) 
+\item Add theoretical analysis on how the size of unlabeled data affect the performance of the target model. (Why increase the size of the unlabeled data can improve the performance at the beginning?)
 \item Can we aggregate GDDA-SVM framework into the deep neural network to train a deep GDDA network? Currently, GDDAA-SVM tries to estimate the imitation parameter by solving a convex problem. How to effectively estimate the imitation parameter when it is integrated into a GDDA network. 
 \end{enumerate}
 \bibliographystyle{abbrv}
